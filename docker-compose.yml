@@ -14,9 +14,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: node-express-ec2
       MYSQL_DATABASE: node-express-database
-      MYSQL_USER: tsai
+      MYSQL_USER: node_user
       MYSQL_PASSWORD: node-express-ec2
-    command: --bind-address=0.0.0.0
     ports:
       - "3306:3306"
     restart: always
