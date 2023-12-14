@@ -1,14 +1,5 @@
-version: '1'
+version: '2.1'
 services:
-  nodejs-app:
-    image: node-express-ec2:1
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mysql-db
-    restart: always
-    container_name: compose-node
-
   mysql-db:
     image: mysql:8.0.34
     environment:
@@ -20,3 +11,23 @@ services:
       - "3306:3306"
     restart: always
     container_name: compose-mysql
+    volumes:
+      - mysql_db:/var/lib/mysql
+    healthcheck:  # 将健康检查添加到 MySQL 服务
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+      interval: 10s
+      
+  nodejs-app:
+    image: node-express-ec2:2.1
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    restart: always
+    container_name: compose-node
+volumes:
+  mysql_db:
+    external: true
