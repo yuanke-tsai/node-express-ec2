@@ -1,13 +1,13 @@
 {
   "name": "node-express-ec2",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a project for me to understand how to build a back-end project from zero to something",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Tsai",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",

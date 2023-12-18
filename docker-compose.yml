@@ -2,11 +2,8 @@ version: '2.1'
 services:
   mysql-db:
     image: mysql:8.0.34
-    environment:
-      MYSQL_ROOT_PASSWORD: node-express-ec2
-      MYSQL_DATABASE: node-express-database
-      MYSQL_USER: node_user
-      MYSQL_PASSWORD: node-express-ec2
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     restart: always
